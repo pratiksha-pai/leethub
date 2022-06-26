@@ -14,7 +14,7 @@ class Solution:
             t+=(cp[i+k]-cp[i])
             
             if t<minsum:
-                minsum=min(t, minsum)
+                minsum=t
             
             i+=1
         
