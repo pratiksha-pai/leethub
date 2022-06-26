@@ -12,10 +12,7 @@ class Solution:
         i=0
         while i+k<n:
             t+=(cp[i+k]-cp[i])
-            
-            if t<minsum:
-                minsum=t
-            
+            minsum=min(t, minsum)
             i+=1
         
         return sum(cp)-minsum
