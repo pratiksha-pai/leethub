@@ -9,13 +9,11 @@ class Solution:
         
         k=n-k
         minsum=t=sum(cp[0:k])
-        i=0
-        while i+k<n:
+        
+        for i in range(0, n-k):
             t+=(cp[i+k]-cp[i])
             
             if t<minsum:
                 minsum=t
-            
-            i+=1
         
         return sum(cp)-minsum
