@@ -3,38 +3,20 @@ class Solution:
         n=len(s)
         if n==1:
             return 0
-        mp={}
-        for i in range(n):
-            if s[i] not in mp:
-                mp[s[i]]=1
-            else:
-                mp[s[i]]+=1
-        res=[]
-        mp=sorted(mp.items(), key=lambda item: item[1], reverse=True)
-        for i in range(len(mp)):
-            res.append(mp[i][1])
         
-        # print(mp)
-        # print(res)
-        
+        mp = {i : s.count(i) for i in set(s)}
+        res=list(mp.values())
+        res.sort(reverse=True)
         m=res[0]
         s=0
         for i in range(1,len(res)):
-            # print('for i '+str(i))
-            if m>res[i]:
-                # print('in if')
-                m=res[i]
+            if res[i-1]>res[i]:
+                continue
             else:
-                # print('in else')
-                if m==0:
-                    temps=res[i]
-                else:
-                    temps=(res[i]-m+1)
+                temps=res[i]-res[i-1]
+                if res[i-1]!=0:
+                    temps+=1
                 res[i]-=temps
-                # print(res)
-                # print(temps)
                 s+=temps
-                m=res[i]
-                
         
         return s
