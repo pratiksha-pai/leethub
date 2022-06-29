@@ -6,6 +6,3 @@ class Solution:
         for i in p:
             o.insert(i[1], i)
         return o
-        print(p)
-        
-        return o
