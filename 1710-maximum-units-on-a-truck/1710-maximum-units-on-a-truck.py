@@ -4,10 +4,12 @@ class Solution:
         s=0
         l=0
         for i in range(len(bt)):
-            if l+bt[i][0]<=t:
-                l+=bt[i][0]
-                s+=(bt[i][0]*bt[i][1])
+            a=bt[i][0]
+            b=bt[i][1]
+            if l+a<=t:
+                l+=a
+                s+=(a*b)
             else:
-                s+=(t-l)*bt[i][1]
+                s+=(t-l)*b
                 return s
         return s
