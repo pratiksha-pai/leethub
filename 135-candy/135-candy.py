@@ -9,10 +9,8 @@ class Solution:
         for i in range(1, n):
             if a[i] > a[i-1]:
                 l[i]=l[i-1]+1
-            
-        for i in reversed(range(0, n-1)):
-            if a[i] > a[i+1]:
-                r[i]=r[i+1]+1
+            if a[n-i-1] > a[n-i]:
+                r[n-i-1]=r[n-i]+1
 
         s=0
         for i in range(n):
