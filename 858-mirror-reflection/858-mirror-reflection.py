@@ -4,8 +4,6 @@ class Solution:
         r = math.gcd(p, q)
         p = int(p/r)
         q = int(q/r)
-        # print(r)
-        # print(p, q)
         
         if p%2==1 and q%2==0:
             return 0
