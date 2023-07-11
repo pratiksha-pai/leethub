@@ -3,3 +3,6 @@
 [Problem Link](https://leetcode.com/problems/find-peak-element/)
 
 ## Notes
+Hard problem, beats 20%
+
+## NEED TO REVIEW
