@@ -3,4 +3,6 @@
 [Problem Link](https://leetcode.com/problems/course-schedule/)
 
 ## Notes
-learn topological sort
+LEARN TOPOLOGICAL SORT
+
+why are visited and instack different? 
