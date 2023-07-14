@@ -1,0 +1,4 @@
+- lambda functions python 
+- default dict python
+- graph bfs dfs
+- 
