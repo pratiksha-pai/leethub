@@ -11,17 +11,18 @@ class Solution:
             return None
         n = len(inorder)
         
+        # the for loop is taking a lot of compute
+        mp = {}
+        for i in range(len(inorder)):
+            mp[inorder[i]] = i
+        
         def construct(prestart, instart, inend):
             
             if inend < instart or prestart >= n:
                 return None
             
             root = TreeNode(preorder[prestart])
-            inorder_root_index = 0
-            for i in range(instart, inend+1):
-                if inorder[i] == preorder[prestart]:
-                    inorder_root_index = i
-                    break
+            inorder_root_index = mp[preorder[prestart]]
             
             left_sub_tree = inorder_root_index - instart
             root.left = construct(prestart+1, instart, inorder_root_index-1)
