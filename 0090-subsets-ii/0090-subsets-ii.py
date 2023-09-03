@@ -12,5 +12,5 @@ class Solution:
                     temp.append(x)
             res.extend(temp[:])
         
-        print(res)
+        # print(res)
         return res
