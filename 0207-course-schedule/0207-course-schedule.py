@@ -1,39 +1,30 @@
 class Solution:
-    def canFinish(self, nc: int, ps: List[List[int]]) -> bool:
-        if nc <= 1:
-            return True
+    def canFinish(self, num_courses: int, prereq: List[List[int]]) -> bool:
         
-        n = len(ps)
-        if n <=1:
-            return True
+        graph = [[] for _ in range(num_courses)]
+        visited = [0 for _ in range(num_courses)]
         
-        from collections import defaultdict
-        mp = defaultdict(list)
-
-        for i in range(n):
-            mp[ps[i][0]].append(ps[i][1])
-
-        def dfs(i, v, s):
-            if s[i] == True:
-                return False
-            if v[i] == True:
-                return True
+        for i in range(len(prereq)):
+            [a, b] = prereq[i]
+            graph[b].append(a)
             
-            v[i] = True
-            s[i] = True
-
-            for l in mp[i]:
-                if not dfs(l, v, s):
+        def dfs(node):
+            
+            if visited[node] == 1:
+                return False
+            if visited[node] == 2:
+                return True  # kinda caching, since we dont check the route of already traversed node
+            
+            visited[node] = 1
+            for neigh in graph[node]:
+                if not dfs(neigh):
                     return False
             
-            s[i] = False
+            visited[node] = 2
             return True
         
-        v = [False] * nc
-        s = [False] * nc
-
-        for i in range(nc):
-            if not dfs(i, v, s):
+        for i in range(num_courses):
+            if not dfs(i):
                 return False
-        return True
         
+        return True
