@@ -1,14 +1,19 @@
 class CombinationIterator:
 
     def __init__(self, characters: str, combinationLength: int):
-        from collections import deque
+        from collections import deque, defaultdict
+        from itertools import combinations
         self.chars = characters
         self.len = combinationLength
         
         self.res = deque()
+        mp = set()
         
         def dfs(idx, length, curr):
-            # print(curr)
+            if (length, curr)  in mp:
+                return
+            mp.add((length, curr))
+            
             if length == self.len:
                 temp = ''.join(curr[i] for i in range(len(curr)))
                 if temp not in self.res:
@@ -22,8 +27,10 @@ class CombinationIterator:
                 dfs(j+1, length, curr)
                 curr.pop()
         
-        for i in range( len(self.chars) - self.len + 1):
-            dfs(i, 0, [])
+        # for i in range( len(self.chars) - self.len + 1):
+        #     dfs(i, 0, [])
+        
+        self.res = deque([''.join(combo) for combo in combinations(self.chars, self.len)])
         
         # self.res = collections.deque(self.res)
         
