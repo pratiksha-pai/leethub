@@ -3,7 +3,7 @@ class Solution:
         
         p = sorted(p, key = lambda x: (-x[0], x[1]))
         count = 0 
-        print(p)
+        # print(p)
         max_defense = -1
         for _, defense in p:
             if defense < max_defense:
