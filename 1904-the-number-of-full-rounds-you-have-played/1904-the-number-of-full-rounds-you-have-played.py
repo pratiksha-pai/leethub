@@ -32,15 +32,11 @@ class Solution:
         in_mm = int(loginTime.split(':')[1])
         out_hh = int(logoutTime.split(':')[0])
         out_mm = int(logoutTime.split(':')[1])
-        
-        # print(in_hh, in_mm, out_hh, out_mm)
-        
+                
         outp = points(out_hh, out_mm, False)
         inp = points(in_hh, in_mm, True)
         res = outp - inp
-        # print(inp, outp)
-        # if  out_hh == in_hh and out_mm == in_mm:
-        #     return 0
+        
         if out_hh > in_hh or (out_hh == in_hh and out_mm >= in_mm ):
             return  res if res > 0 else 0
         else:
