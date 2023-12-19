@@ -5,19 +5,37 @@
 #         self.next = next
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # bad method
-        temp = head
-        res = []
-        while temp != None:
-            res.append(temp.val)
-            temp = temp.next
         
-        res.sort()
-        temp = head
-        idx = 0
-        while temp != None:
-            temp.val = res[idx]
-            idx += 1 
-            temp = temp.next
+        def merge(x, y):
+            if not x or not y:
+                return x or y
             
+            if x.val < y.val:
+                x.next = merge(x.next, y)
+                return x
+            else:
+                y.next = merge(x, y.next)
+                return y
+    
+        def sort(node):
+            if node == None or node.next == None:
+                return node
+            
+            slow, fast = node, node.next 
+            
+            while fast and fast.next:
+                fast = fast.next.next 
+                slow = slow.next 
+            
+            mid = slow.next 
+            slow.next = None
+            
+            left = sort(node)
+            right = sort(mid)
+    
+            return merge(left, right)
+        
+        head = sort(head)
         return head
+            
+            
