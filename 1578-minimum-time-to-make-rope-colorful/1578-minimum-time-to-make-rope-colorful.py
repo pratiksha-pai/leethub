@@ -10,8 +10,9 @@ class Solution:
                 
                 res += min(max_cost, nt[i])
                 max_cost = max(max_cost, nt[i])
-            else:
-                max_cost = nt[i]
+                continue
+            
+            max_cost = nt[i]
         
 
         return res
