@@ -11,14 +11,21 @@ class Solution:
             return []
         
         res = []
-        def dfs(root):
-            if root == None:
-                return 
-            
-            res.append(root.val)
-            dfs(root.left)
-            dfs(root.right)
+        curr, s = root, []
         
-        dfs(root)
+        while s or curr:
+            
+            while curr:
+                res.append(curr.val)
+                s.append(curr)
+                curr = curr.left
+            
+            curr = s.pop()
+            curr = curr.right
+            
+            
+            
+            
+            
         return res
             
