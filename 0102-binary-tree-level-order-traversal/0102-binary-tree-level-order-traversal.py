@@ -18,24 +18,22 @@ class Solution:
             
             if root == None:
                 return []
-            
-            temp= []
-            p = deque([root])
-            q = deque()
-            
-            while p or q:
-                while p:
-                    top = p.popleft()
-                    temp.append(top.val)
-                    if top.left:
-                        q.append(top.left)
-                    if top.right:
-                        q.append(top.right)
-                
-                p = q
-                q = deque()
-                res.append(temp)
+
+            q = deque([root])
+            while q:
+                n = len(q)
                 temp = []
-           
+                
+                for _ in range(n):
+                    node = q.popleft()
+                    temp.append(node.val)
+                    
+                    if node.left:
+                        q.append(node.left)
+                    if node.right:
+                        q.append(node.right)
+                
+                res.append(temp)
+            
         bfs(root)
         return res
