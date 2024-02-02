@@ -3,18 +3,17 @@ class Solution:
         
         n = len(g)
         res = []
-        
-        def dfs(node, path):
+        q = deque([[0]])
+        while q:
+            path = q.popleft()
+            node = path[-1]
+            
             if node == n-1:
-                res.append(path.copy())
-                return
+                res.append(path)
             
             for child in g[node]:
-                dfs(child, path + [child])
+                q.append(path + [child])
         
-        
-        
-        dfs(0, [0])
         return res
             
             
