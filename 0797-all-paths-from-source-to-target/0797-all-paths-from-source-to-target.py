@@ -3,7 +3,6 @@ class Solution:
         
         n = len(g)
         res = []
-        visit = set()
         
         def dfs(node, path):
             if node == n-1:
@@ -11,12 +10,10 @@ class Solution:
                 return
             
             for child in g[node]:
-                if child not in visit:
-                    visit.add(child)
-                    path.append(child)
-                    dfs(child, path)
-                    visit.remove(child)
-                    path.pop()
+                dfs(child, path + [child])
+        
+        
+        
         dfs(0, [0])
         return res
             
