@@ -3,16 +3,18 @@ class Solution:
         
         res = []
         n = len(nums)
-        def backtrack(path):
+        
+        def backtrack(path, used):
             if len(path) == n:
                 # print(path)
-                res.append(path[::])
+                res.append(path[:])
 
             for i in range(len(nums)):
-                x = nums.pop(i)
-                backtrack(path + [x])
-                nums.insert(i, x)
+                if i not in used:
+                    used.add(i)
+                    backtrack(path + [nums[i]], used)
+                    used.remove(i)
+
         
-        
-        backtrack([])
+        backtrack([], set())
         return res
