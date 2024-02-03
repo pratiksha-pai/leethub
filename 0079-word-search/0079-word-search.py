@@ -4,13 +4,12 @@ class Solution:
         dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]]
         n = len(word)
         R, C = len(board), len(board[0])
-        visited = set()
         
         def dfs(i, x, y):
             if i == n:
                 return True
             
-            if x < 0 or y < 0 or x >= R or y >= C or board[x][y] != word[i] or (x, y) in visited:
+            if x < 0 or y < 0 or x >= R or y >= C or board[x][y] != word[i]:
                 return False
             
             temp, board[x][y] = board[x][y], '#'
