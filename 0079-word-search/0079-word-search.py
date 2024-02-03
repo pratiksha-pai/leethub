@@ -12,13 +12,15 @@ class Solution:
             
             if x < 0 or y < 0 or x >= R or y >= C or board[x][y] != word[i] or (x, y) in visited:
                 return False
-            visited.add((x, y))
+            
+            temp, board[x][y] = board[x][y], '#'
             
             for dx, dy in dirs:
                 nx, ny = x+dx, y+dy
                 if dfs(i+1, nx, ny):
                     return True
-            visited.remove((x, y))
+            
+            board[x][y] = temp
             
             return False
         
