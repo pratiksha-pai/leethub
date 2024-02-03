@@ -3,15 +3,15 @@ class Solution:
         
         res = []
             
-        def backtrack(path, i):
+        def backtrack(path, start):
             if len(path) == k:
                 res.append(path[:])
                 return
             
-            for j in range(i+1, n):
-                backtrack(path+[j+1], j)
+            for j in range(start, n):
+                backtrack(path+[j+1], j+1)
         
-        backtrack([], -1)
+        backtrack([], 0)
         
         return res
                     
