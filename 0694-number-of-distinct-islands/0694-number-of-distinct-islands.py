@@ -2,27 +2,26 @@ class Solution:
     def numDistinctIslands(self, g: List[List[int]]) -> int:
         
         R, C = len(g), len(g[0])
-        dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+        res = set()
         
-        
-        def dfs(x, y, direction):
+        def dfs(x, y, direc):
             if x < 0 or y < 0 or x >= R or y >= C or g[x][y] == 0:
-                return
-            path.append(direction)
+                return 
             g[x][y] = 0
+            path.append(direc)
             dfs(x-1, y, 'l')
             dfs(x+1, y, 'r')
             dfs(x, y-1, 'u')
             dfs(x, y+1, 'd')
             path.append('b')
         
-        ui = set()
-        for i in range(R):
-            for j in range(C):
-                if g[i][j] == 1:
+        for x in range(R):
+            for y in range(C):
+                if g[x][y] == 1:
                     path = []
-                    dfs(i, j, 's')
-                    ui.add(tuple(path))
-        
-        return len(ui)
-                
+                    dfs(x, y, 's')
+                    res.add(tuple(path))
+                        
+        return len(res)
+                        
+            
