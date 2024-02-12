@@ -12,28 +12,20 @@ class Solution:
             return []
         
         
+        q = deque([(0, root)])
         res = []
-
-        def bfs(root):
+        
+        while q:
+            depth, node = q.popleft()
+            if len(res) == depth:
+                res.append([])
+            res[depth].append(node.val)
             
-            if root == None:
-                return []
-
-            q = deque([root])
-            while q:
-                n = len(q)
-                temp = []
-                
-                for _ in range(n):
-                    node = q.popleft()
-                    temp.append(node.val)
-                    
-                    if node.left:
-                        q.append(node.left)
-                    if node.right:
-                        q.append(node.right)
-                
-                res.append(temp)
+            if node.left:
+                q.append((depth+1, node.left))
+            if node.right:
+                q.append((depth+1, node.right))
             
-        bfs(root)
         return res
+        
+        
