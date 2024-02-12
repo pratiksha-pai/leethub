@@ -16,15 +16,22 @@ class Solution:
         res = []
         
         while q:
-            depth, node = q.popleft()
-            if len(res) == depth:
-                res.append([])
-            res[depth].append(node.val)
-            
-            if node.left:
-                q.append((depth+1, node.left))
-            if node.right:
-                q.append((depth+1, node.right))
+            # depth, node = q.popleft()
+            n = len(q)
+            temp = []
+            for _ in range(n):
+                depth, node = q.popleft()
+                temp.append(node.val)
+                if node.left:
+                    q.append((depth+1, node.left))
+                if node.right:
+                    q.append((depth+1, node.right))
+                
+            # if len(res) == depth:
+            #     res.append([])
+            # res[depth].append(node.val)
+            res.append(temp)
+
             
         return res
         
