@@ -13,13 +13,12 @@ class Solution:
             
             for end in range(start+1, len(s)+1):
                 segment = s[start:end]
-                if segment in wd:
-                    if dfs(end):
-                        memo[start] = True
-                        return True
+                if segment in wd and dfs(end):
+                    memo[start] = True
+                    return True
+                
             
             memo[start] = False
             return False
         
         return dfs(0)
-                
