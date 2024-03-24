@@ -1,6 +1,6 @@
 class Solution:
     def shortestWay(self, source: str, target: str) -> int:
-        def subsequenceIndex(source, target, start):
+        def subsequenceIndex(source, target):
             si = ti = 0
             while si < len(source) and ti < len(target):
                 if source[si] == target[ti]:
@@ -11,7 +11,7 @@ class Solution:
         count = 0
         i = 0
         while i < len(target):
-            pos = subsequenceIndex(source, target[i:], 0)
+            pos = subsequenceIndex(source, target[i:])
             if pos == 0:
                 return -1
             i += pos
