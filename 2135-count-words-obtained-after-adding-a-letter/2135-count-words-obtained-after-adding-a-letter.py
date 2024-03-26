@@ -1,19 +1,21 @@
 class Solution:
     def wordCount(self, startWords: List[str], targetWords: List[str]) -> int:
-        def to_bitmask(word):
-            mask = 0
-            for char in word:
-                mask |= (1 << (ord(char) - ord('a')))
-            return mask
-
-        startWords_masks = {to_bitmask(word) for word in startWords}
+        dicts = {}
+        for i in startWords:
+            li = []
+            for j in i:
+                li.append(j)
+            li.sort()
+            dicts[tuple(li)] = 1
         count = 0
-
-        for word in targetWords:
-            target_mask = to_bitmask(word)
-            for char in word:
-                if target_mask ^ (1 << (ord(char) - ord('a'))) in startWords_masks:
-                    count += 1
+        for i in targetWords:
+            li = []
+            for j in i:
+                li.append(j)
+            li.sort()
+            li = tuple(li)
+            for j in range(len(li)):
+                if dicts.get(li[:j]+li[j+1:]):
+                    count+=1
                     break
-
         return count
