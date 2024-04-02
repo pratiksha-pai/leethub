@@ -1,32 +1,29 @@
 class Solution:
     def spiralOrder(self, mat: List[List[int]]) -> List[int]:
         
-        m, n = len(mat), len(mat[0])
-        if m == 0 or n == 0:
-            return [] 
-        rs, re, cs, ce = 0, m-1, 0, n-1
-        
-        
+        sx, sy, ex, ey = 0, 0, len(mat)-1, len(mat[0])-1
         res = []
         
-        while rs <= re and cs <= ce:
+        while sx <= ex and sy <= ey:
             
-            for j in range(cs, ce+1):
-                res.append(mat[rs][j])
-            rs += 1
 
-            for i in range(rs, re+1):
-                res.append(mat[i][ce])
-            ce -= 1
+            for y in range(sy, ey+1):
+                res.append(mat[sx][y])
+            sx+=1
             
-            if rs <= re:
-                for j in range(ce, cs-1, -1):
-                    res.append(mat[re][j])
-                re -= 1
+
+            for x in range(sx, ex+1):
+                res.append(mat[x][ey])
+            ey-=1
             
-            if cs <= ce:
-                for i in range(re, rs-1, -1):
-                    res.append(mat[i][cs])
-                cs += 1
+            if sx <= ex:
+                for y in range(ey, sy-1, -1):
+                    res.append(mat[ex][y])
+                ex-=1
+            
+            if sy <= ey:
+                for x in range(ex, sx-1, -1):
+                    res.append(mat[x][sy])
+                sy+=1
         
         return res
