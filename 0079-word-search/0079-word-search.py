@@ -1,37 +1,37 @@
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
+    def exist(self, b: List[List[str]], word: str) -> bool:
         
-        dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+
         n = len(word)
-        R, C = len(board), len(board[0])
+        # seen = set()
+        dirs = [[-1, 0], [0, -1], [1, 0], [0, 1]]
         
-        def dfs(i, x, y):
+        def dfs(path, i, x, y):
             if i == n:
-                return True
-            
-            if x < 0 or y < 0 or x >= R or y >= C or board[x][y] != word[i]:
-                return False
-            
-            temp, board[x][y] = board[x][y], '#'
-            
-            for dx, dy in dirs:
-                nx, ny = x+dx, y+dy
-                if dfs(i+1, nx, ny):
+                if ''.join(path) == word:
                     return True
+                else:
+                    return False
             
-            board[x][y] = temp
+            
+            if 0<=x<R and 0<=y<C and b[x][y] == word[i] and (x, y) not in seen:
+                seen.add((x, y))
+                for dx, dy in dirs:
+                    nx, ny = x+dx, y+dy
+                    if dfs(path + [word[i]], i+1, nx, ny):
+                        return True
+                seen.remove((x, y))
             
             return False
         
-        for i in range(R):
-            for j in range(C):
-                if dfs(0, i, j):
-                    return True
+        R, C = len(b), len(b[0])
+        
+        for x in range(R):
+            for y in range(C):
+                if word[0] == b[x][y]:
+                    seen = set()
+                    if dfs([], 0, x, y):
+                        return True
         
         return False
-            
-        
-        
                 
-            
-        
