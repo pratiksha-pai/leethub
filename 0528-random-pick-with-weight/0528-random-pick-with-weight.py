@@ -1,23 +1,28 @@
 class Solution:
 
-    def __init__(self, w: List[int]):
-        self.prefix_sums = []
-        prefix_sum = 0
-        for weight in w:
-            prefix_sum += weight
-            self.prefix_sums.append(prefix_sum)
-        self.total_sum = prefix_sum
+    def __init__(self, weis: List[int]):
+        self.presum = []
+        presum = 0
+        for wei in weis:
+            presum += wei
+            self.presum.append(presum)
+        
+        self.total = presum
+
 
     def pickIndex(self) -> int:
-        target = self.total_sum * random.random()
-        low, high = 0, len(self.prefix_sums) - 1
-        while low <= high:
-            mid = low + (high - low) // 2
-            if target > self.prefix_sums[mid]:
-                low = mid + 1
+        target = self.total * random.random()
+        l, h = 0, len(self.presum)
+        while l < h:
+            m = l + ( h - l ) // 2
+            if target > self.presum[m]:
+                l = m+1
             else:
-                high = mid - 1
-        return low
+                h = m
+        return l
+                
+                
+
 
 
 
