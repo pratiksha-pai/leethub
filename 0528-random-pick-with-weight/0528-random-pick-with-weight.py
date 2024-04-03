@@ -14,7 +14,7 @@ class Solution:
         target = self.total * random.random()
         l, h = 0, len(self.presum)
         while l < h:
-            m = l + ( h - l ) // 2
+            m = (l+h) // 2
             if target > self.presum[m]:
                 l = m+1
             else:
