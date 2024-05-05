@@ -3,14 +3,14 @@ class Solution:
         
         res = []
         
-        def dfs(path, idx):
+        def dfs(path,start):
             if len(path) == k:
                 res.append(path[:])
                 return 
             
-            for i in range(idx+1, n+1):
-                dfs(path + [i], i)
+            for i in range(start, n+1):
+                dfs(path + [i], i+1)
         
-        dfs([], 0)
+        dfs([], 1)
         return res
                 
