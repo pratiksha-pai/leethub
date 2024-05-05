@@ -6,6 +6,7 @@ class Solution:
         def dfs(path, idx):
             if len(path) == k:
                 res.append(path[:])
+                return 
             
             for i in range(idx+1, n+1):
                 dfs(path + [i], i)
