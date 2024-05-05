@@ -5,32 +5,34 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+    def getDirections(self, root: Optional[TreeNode], sv: int, dv: int) -> str:
         
-        def find_path(node, val):
-            if node == None:
+        def get_path(node, val):
+            if not node:
                 return ''
             
             if node.val == val:
-                return 'x'
+                return 'X'
             
-            left = find_path(node.left, val)
-            if left:
-                return 'l' + left
+            l = get_path(node.left, val)
+            if l:
+                return 'L' + l
             
-            right = find_path(node.right, val)
-            if right:
-                return 'r' + right
+            r = get_path(node.right, val)
+            if r:
+                return 'R' + r
             
             return ''
-        
-        def ca(a, b): # comon ancestor
+    
+        def common_ancestor(a, b):
             i = 0
             while i < min(len(a), len(b)) and a[i] == b[i]:
-                i+= 1
-            return 'u' * (len(a) - i) + b[i:]
+                i+=1
+            return 'U' * (len(a) - i) + b[i:]
         
-        path1 = find_path(root, startValue)[:-1]
-        path2 = find_path(root, destValue)[:-1]
+        path1 = get_path(root, sv)[:-1]
+        path2 = get_path(root, dv)[:-1]
         
-        return ca(path1, path2).upper()
+        return common_ancestor(path1, path2)
+    
+        
