@@ -7,19 +7,18 @@
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        
-        def dfs(node):
-            if node == None:
-                return -1
-
-            left = dfs(node.left)
-            right = dfs(node.right)
-            h = max(left, right) + 1
-            if h == len(res):
-                res.append([])
-            res[h].append(node.val)
-            return h
-        
         res = []
+        def dfs(node):
+            if not node:
+                return -1
+            
+            l = dfs(node.left)
+            r = dfs(node.right)
+            curr = max(l, r) + 1
+            if len(res) == curr:
+                res.append([])
+            res[curr].append(node.val)
+            return curr
+        
         dfs(root)
         return res
