@@ -1,7 +1,6 @@
 class Solution:
     def findAllRecipes(self, recps: List[str], ings: List[List[str]], sups: List[str]) -> List[str]:
         
-        from collections import defaultdict
         g = defaultdict(list)
         degree = defaultdict(int)
         sups = set(sups)
@@ -12,9 +11,8 @@ class Solution:
                 if ing not in sups:
                     g[ing].append(rec)
                     degree[rec] += 1
-        
-        q = deque([rec for rec in recps if degree[rec] == 0]) 
-        
+        q = deque([rec for rec in recps if degree[rec]==0])
+        res = set()
         while q:
             u = q.popleft()
             res.add(u)
@@ -25,3 +23,5 @@ class Solution:
                     q.append(v)
         
         return [rec for rec in recps if rec in res]
+        
+        
