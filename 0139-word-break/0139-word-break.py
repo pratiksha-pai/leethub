@@ -1,24 +1,14 @@
 class Solution:
     def wordBreak(self, s: str, wd: List[str]) -> bool:
-        
+        n = len(s)
+        dp = [False for _ in range(n+1)]
+        dp[0] = True
         wd = set(wd)
-        memo = {}
         
-        def dfs(start):
-            if start == len(s):
-                return True
-            
-            if start in memo:
-                return memo[start]
-            
-            for end in range(start+1, len(s)+1):
-                segment = s[start:end]
-                if segment in wd and dfs(end):
-                    memo[start] = True
-                    return True
-                
-            
-            memo[start] = False
-            return False
+        for i in range(1, n+1):
+            for j in range(i):
+                if dp[j] and s[j:i] in wd:
+                    dp[i] = True
+                    break
         
-        return dfs(0)
+        return dp[n]
