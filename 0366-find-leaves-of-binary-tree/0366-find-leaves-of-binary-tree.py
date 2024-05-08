@@ -6,17 +6,16 @@
 #         self.right = right
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
-        
         res = defaultdict(list)
         def dfs(node):
             if not node:
                 return -1
+            
             l = dfs(node.left)
             r = dfs(node.right)
-            curr = max(l, r) + 1
-            res[curr].append(node.val)
-            return curr
+            h = max(l, r) + 1
+            res[h].append(node.val)
+            return h
         
         dfs(root)
-        # print(res)
-        return [ans for _, ans in res.items()]
+        return [vals for _, vals in res.items()]
